@@ -238,14 +238,17 @@ public class SwiftLoader: UIView {
         }
         
         private func drawBackgroundCircle(partial : Bool) {
+            
+            let line_width = self.lineWidth ?? 30
+            
             let startAngle : CGFloat = CGFloat(M_PI) / CGFloat(2.0)
             var endAngle : CGFloat = (2.0 * CGFloat(M_PI)) + startAngle
             
             let center : CGPoint = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2)
-            let radius : CGFloat = (CGFloat(self.bounds.size.width) - CGFloat(self.lineWidth!)) / CGFloat(2.0)
+            let radius : CGFloat = (CGFloat(self.bounds.size.width) - CGFloat(line_width)) / CGFloat(2.0)
             
             let processBackgroundPath : UIBezierPath = UIBezierPath()
-            processBackgroundPath.lineWidth = CGFloat(self.lineWidth!)
+            processBackgroundPath.lineWidth = CGFloat(line_width)
             
             if (partial) {
                 endAngle = (1.8 * CGFloat(M_PI)) + startAngle
