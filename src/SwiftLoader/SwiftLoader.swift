@@ -239,7 +239,7 @@ public class SwiftLoader: UIView {
         
         private func drawBackgroundCircle(partial : Bool) {
             
-            let line_width = self.lineWidth ?? 30
+            let line_width = self.lineWidth ?? fmaxf(Float(self.frame.size.width) * 0.025, 1)
             
             let startAngle : CGFloat = CGFloat(M_PI) / CGFloat(2.0)
             var endAngle : CGFloat = (2.0 * CGFloat(M_PI)) + startAngle
@@ -265,10 +265,11 @@ public class SwiftLoader: UIView {
         private func start() {
             self.isSpinning? = true
             self.drawBackgroundCircle(true)
+            let speed = self.speed ?? 1
             
             let rotationAnimation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
             rotationAnimation.toValue = NSNumber(double: M_PI * 2.0)
-            rotationAnimation.duration = CFTimeInterval(speed!);
+            rotationAnimation.duration = CFTimeInterval(speed);
             rotationAnimation.cumulative = true;
             rotationAnimation.repeatCount = HUGE;
             self.backgroundLayer?.addAnimation(rotationAnimation, forKey: "rotationAnimation")
